@@ -82,11 +82,14 @@ data = np.delete(data, np.s_[4::5], 1)
 # Please note that if you use vflip or hflip to change the orientation
 # of the capture, you must flip the Bayer pattern accordingly
 
-rgb = np.zeros(data.shape + (3,), dtype=data.dtype)
-rgb[1::2, 0::2, 0] = data[1::2, 0::2] # Red
-rgb[0::2, 0::2, 1] = data[0::2, 0::2] # Green
-rgb[1::2, 1::2, 1] = data[1::2, 1::2] # Green
-rgb[0::2, 1::2, 2] = data[0::2, 1::2] # Blue
+#rgb = np.zeros(data.shape + (3,), dtype=data.dtype)
+#rgb[1::2, 0::2, 0] = data[1::2, 0::2] # Red
+#rgb[0::2, 0::2, 1] = data[0::2, 0::2] # Green
+#rgb[1::2, 1::2, 1] = data[1::2, 1::2] # Green
+#rgb[0::2, 1::2, 2] = data[0::2, 1::2] # Blue
+
+with open('image.data', 'wb') as f:
+    data.tofile(f)
 
 # print(rgb.shape[0])
 
@@ -94,16 +97,16 @@ rgb[0::2, 1::2, 2] = data[0::2, 1::2] # Blue
 # and colors but the data still requires de-mosaicing and
 # post-processing. If you wish to do this yourself, end the script here!
 
-usergb = 0
-if (usergb == 1):
-    for i in range(rgb.shape[0]):
-	for j in range(rgb.shape[1]):
-            for c in range(3):
-                if (rgb[i,j,c]!=0):
-                     print(i, '\t', j, '\t', rgb[i,j,c], '\t', c)
-width = range(data.shape[0])
-length = range(data.shape[1])
-if (usergb==0):
-    for i in width:
-    #    for j in length: 
-            print(i, '\t', data[i,0])
+# usergb = 0
+# if (usergb == 1):
+#     for i in range(rgb.shape[0]):
+# 	for j in range(rgb.shape[1]):
+#             for c in range(3):
+#                 if (rgb[i,j,c]!=0):
+#                      print(i, '\t', j, '\t', rgb[i,j,c], '\t', c)
+# width = range(data.shape[0])
+# length = range(data.shape[1])
+# if (usergb==0):
+#     for i in width:
+#     #    for j in length: 
+#             print(i, '\t', data[i,0])
